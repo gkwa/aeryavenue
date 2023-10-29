@@ -1,0 +1,6 @@
+Minimal tview that allows this to work:
+
+#+begin_example
+make
+result=$(./aeryavenue) && echo $result
+#+end_example
