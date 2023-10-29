@@ -30,6 +30,12 @@ func main() {
 		}
 	}
 
-	code := aeryavenue.Main()
+	paths := map[string]string{
+		"key1": "value1",
+		"key2": "value2",
+		"key3": "value3",
+	}
+
+	code := aeryavenue.Main(paths)
 	os.Exit(code)
 }

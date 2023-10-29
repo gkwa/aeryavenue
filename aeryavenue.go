@@ -13,43 +13,17 @@ import (
 	"github.com/rivo/tview"
 )
 
-func Main() int {
-	slog.Debug("aeryavenue", "test", true)
-
-	paths := map[string]string{
-		"key1": "value1",
-		"key2": "value2",
-		"key3": "value3",
-	}
-	inputSelector := getInputSelector()
-	selectedPath, err := selectPath(paths, inputSelector)
+func Main(itemsMap map[string]string) int {
+	inputSelector := GetInputSelector()
+	selectedItem, err := selectItem(itemsMap, inputSelector)
 	if err != nil {
-		slog.Error("selectPath", "error", err)
+		slog.Error("selectItem failed", "error", err)
 		return 1
 	}
 
-	fmt.Println(selectedPath)
+	fmt.Println(selectedItem)
 
 	return 0
-}
-
-func selectPath(paths map[string]string, is InputSelector) (string, error) {
-	sortedKeys := sortedKeys(paths)
-	item, err := is.SelectItem(sortedKeys)
-	if err != nil {
-		return "", err
-	}
-
-	return paths[item], nil
-}
-
-func sortedKeys(m map[string]string) []string {
-	keys := make([]string, 0, len(m))
-	for k := range m {
-		keys = append(keys, k)
-	}
-	sort.Strings(keys)
-	return keys
 }
 
 type (
@@ -62,6 +36,25 @@ type (
 	RandomItemInputSelector struct{}
 	TviewInputSelector      struct{}
 )
+
+func selectItem(items map[string]string, is InputSelector) (string, error) {
+	sortedKeys := sortedKeys(items)
+	item, err := is.SelectItem(sortedKeys)
+	if err != nil {
+		return "", err
+	}
+
+	return items[item], nil
+}
+
+func sortedKeys(m map[string]string) []string {
+	keys := make([]string, 0, len(m))
+	for k := range m {
+		keys = append(keys, k)
+	}
+	sort.Strings(keys)
+	return keys
+}
 
 // fixme: never see output of this, dunno why
 func (cd *BlackholeDestination) Write(data string) error {
@@ -142,7 +135,7 @@ func stringToBool(s string) (bool, error) {
 	return b, nil
 }
 
-func getInputSelector() InputSelector {
+func GetInputSelector() InputSelector {
 	ris := &RandomItemInputSelector{}
 	uis := &TviewInputSelector{}
 
