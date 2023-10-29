@@ -10,10 +10,6 @@ import (
 type TviewInputSelector struct{}
 
 func (selector *TviewInputSelector) SelectItem(listItems []string) (string, error) {
-	if len(listItems) < 1 {
-		return "", nil
-	}
-
 	app := tview.NewApplication()
 
 	var selectedItem string

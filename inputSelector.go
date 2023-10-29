@@ -31,6 +31,10 @@ func SelectItem(m map[string]string, selector InputSelector) (string, error) {
 		keys = append(keys, k)
 	}
 
+	if len(keys) < 1 {
+		return "", nil
+	}
+
 	item, err := selector.SelectItem(keys)
 	if err != nil {
 		return "", err
