@@ -54,7 +54,7 @@ func (selector *TviewInputSelector) SelectItem(listItems []string) (string, erro
 				return nil
 			}
 		}
-		
+
 		return event
 	})
 
