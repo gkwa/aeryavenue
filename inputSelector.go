@@ -15,7 +15,6 @@ func GetInputSelector() InputSelector {
 		b, err := stringToBool(s)
 		if err != nil {
 			return &TviewInputSelector{}
-
 		}
 
 		if b {

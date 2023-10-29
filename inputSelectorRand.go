@@ -5,9 +5,7 @@ import (
 	"time"
 )
 
-type (
-	RandomItemInputSelector struct{}
-)
+type RandomItemInputSelector struct{}
 
 func (selector *RandomItemInputSelector) SelectItem(keys []string) (string, error) {
 	rng := rand.New(rand.NewSource(time.Now().UnixNano()))

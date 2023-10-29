@@ -5,9 +5,7 @@ import (
 	"github.com/rivo/tview"
 )
 
-type (
-	TviewInputSelector struct{}
-)
+type TviewInputSelector struct{}
 
 func (selector *TviewInputSelector) SelectItem(listItems []string) (string, error) {
 	app := tview.NewApplication()
