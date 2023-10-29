@@ -15,7 +15,7 @@ import (
 
 func Main(itemsMap map[string]string) int {
 	inputSelector := GetInputSelector()
-	selectedItem, err := selectItem(itemsMap, inputSelector)
+	selectedItem, err := SelectItem(itemsMap, inputSelector)
 	if err != nil {
 		slog.Error("selectItem failed", "error", err)
 		return 1
@@ -37,7 +37,7 @@ type (
 	TviewInputSelector      struct{}
 )
 
-func selectItem(items map[string]string, is InputSelector) (string, error) {
+func SelectItem(items map[string]string, is InputSelector) (string, error) {
 	sortedKeys := sortedKeys(items)
 	item, err := is.SelectItem(sortedKeys)
 	if err != nil {
