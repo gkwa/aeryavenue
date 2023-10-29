@@ -28,12 +28,16 @@ func GetInputSelector() InputSelector {
 	return tviewSelector
 }
 
-func SelectItem(items map[string]string, selector InputSelector) (string, error) {
-	sortedKeys := sortedKeys(items)
-	item, err := selector.SelectItem(sortedKeys)
+func SelectItem(m map[string]string, selector InputSelector) (string, error) {
+	keys := make([]string, 0, len(m))
+	for k := range m {
+		keys = append(keys, k)
+	}
+
+	item, err := selector.SelectItem(keys)
 	if err != nil {
 		return "", err
 	}
 
-	return items[item], nil
+	return m[item], nil
 }
