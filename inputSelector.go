@@ -3,7 +3,7 @@ package aeryavenue
 import "os"
 
 type InputSelector interface {
-	SelectItem(keys []string) (string, error)
+	SelectItem(items []string) (string, error)
 }
 
 func GetInputSelector() InputSelector {
