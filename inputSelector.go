@@ -18,7 +18,7 @@ func GetInputSelector() InputSelector {
 		}
 
 		if b {
-			return &RandomItemInputSelector{}
+			return &AutomaticItemInputSelector{}
 		}
 	}
 

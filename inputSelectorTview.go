@@ -1,6 +1,8 @@
 package aeryavenue
 
 import (
+	"log/slog"
+
 	"github.com/gdamore/tcell/v2"
 	"github.com/rivo/tview"
 )
@@ -48,6 +50,7 @@ func (selector *TviewInputSelector) SelectItem(listItems []string) (string, erro
 				return nil
 			}
 		}
+		
 		return event
 	})
 
@@ -57,4 +60,12 @@ func (selector *TviewInputSelector) SelectItem(listItems []string) (string, erro
 	}
 
 	return selectedItem, nil
+}
+
+func returnValue(val string, output OutputDestination) {
+	slog.Debug("out", "val", val)
+
+	if err := output.Write(val); err != nil {
+		slog.Error("error writing to output", "error", err)
+	}
 }
