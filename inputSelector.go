@@ -7,9 +7,6 @@ type InputSelector interface {
 }
 
 func GetInputSelector() InputSelector {
-	randSelector := &RandomItemInputSelector{}
-	tviewSelector := &TviewInputSelector{}
-
 	// don't prompt for input while in automated pipeline
 	envVars := []string{"GITHUB_ACTIONS", "GITLAB_CI"}
 
@@ -17,15 +14,16 @@ func GetInputSelector() InputSelector {
 		s := os.Getenv(envVar)
 		b, err := stringToBool(s)
 		if err != nil {
-			return tviewSelector
+			return &TviewInputSelector{}
+
 		}
 
 		if b {
-			return randSelector
+			return &RandomItemInputSelector{}
 		}
 	}
 
-	return tviewSelector
+	return &TviewInputSelector{}
 }
 
 func SelectItem(m map[string]string, selector InputSelector) (string, error) {
