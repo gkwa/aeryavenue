@@ -1,5 +1,11 @@
 package aeryavenue
 
+import (
+	"log/slog"
+
+	"github.com/atotto/clipboard"
+)
+
 type (
 	BlackholeDestination struct{}
 	ClipboardDestination struct{}
@@ -13,4 +19,17 @@ func (cd *BlackholeDestination) Write(data string) error {
 
 type OutputDestination interface {
 	Write(data string) error
+}
+
+type FileDestination struct {
+	FilePath string
+}
+
+func writeToClipboard(s string) error {
+	err := clipboard.WriteAll(s)
+	if err != nil {
+		slog.Error("error writing to clipboard", "error", err)
+	}
+
+	return err
 }
