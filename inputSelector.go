@@ -1,6 +1,9 @@
 package aeryavenue
 
-import "os"
+import (
+	"os"
+	"sort"
+)
 
 type InputSelector interface {
 	SelectItem(items []string) (string, error)
@@ -34,6 +37,8 @@ func SelectItem(m map[string]string, selector InputSelector) (string, error) {
 	if len(keys) < 1 {
 		return "", nil
 	}
+
+	sort.Strings(keys)
 
 	item, err := selector.SelectItem(keys)
 	if err != nil {
