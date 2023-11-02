@@ -38,8 +38,6 @@ func SelectItem(m map[string]string, selector InputSelector) (string, error) {
 		return "", nil
 	}
 
-	sort.Strings(keys)
-
 	item, err := selector.SelectItem(keys)
 	if err != nil {
 		return "", err
