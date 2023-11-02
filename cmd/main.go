@@ -31,9 +31,9 @@ func main() {
 	}
 
 	paths := map[string]string{
+		"key3": "value3",
 		"key1": "value1",
 		"key2": "value2",
-		"key3": "value3",
 	}
 
 	code := aeryavenue.Main(paths)
