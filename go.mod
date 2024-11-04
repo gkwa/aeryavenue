@@ -5,7 +5,7 @@ go 1.21.1
 require (
 	github.com/atotto/clipboard v0.1.4
 	github.com/gdamore/tcell/v2 v2.7.4
-	github.com/rivo/tview v0.0.0-20241030223020-e34b54cd4c27
+	github.com/rivo/tview v0.0.0-20241103174730-c76f7879f592
 	github.com/taylormonacelli/goldbug v0.0.6
 )
 
